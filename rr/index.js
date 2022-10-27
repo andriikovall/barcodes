@@ -1,7 +1,7 @@
 const { CHARACTERS_TO_BINARY_MAP } = require("./constants");
 const { drawBarcode } = require("./draw");
 
-const ACCEPTABLE_SYMBOLS_REGEX = /^[a-zA-Z0-9-,.$/+%:]+$/;
+const ACCEPTABLE_SYMBOLS_REGEX = /^[a-zA-Z0-9-,.$/+%: ]+$/;
 
 const isAcceptable = (input) => {
   return ACCEPTABLE_SYMBOLS_REGEX.test(input);

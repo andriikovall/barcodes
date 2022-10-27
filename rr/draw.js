@@ -1,11 +1,14 @@
 const { createCanvas } = require("canvas");
 const fs = require("fs");
 
-const BAR_WIDTH = 2;
-const PADDING_HORIZONTAL = 80;
-const PADDING_VERTICAL = 50;
-const CANVAS_HEIGHT = 200;
-const BARCODE_HEIGHT = CANVAS_HEIGHT - PADDING_VERTICAL * 2;
+const BAR_WIDTH = 1;
+const PADDING_HORIZONTAL = 20;
+const PADDING_VERTICAL = 20;
+const FONT_SIZE = 14;
+const FONT_VERTICAL_PADDING = 12;
+const CANVAS_HEIGHT = 200 + FONT_SIZE + FONT_VERTICAL_PADDING;
+const BARCODE_HEIGHT =
+  CANVAS_HEIGHT - (FONT_SIZE + FONT_VERTICAL_PADDING) - PADDING_VERTICAL;
 
 const drawBarcode = (barcodeBin, barcodeInput, fileName) => {
   const canvas = createCanvas(
@@ -30,11 +33,20 @@ const drawBarcode = (barcodeBin, barcodeInput, fileName) => {
     ctx.fillRect(x, y, BAR_WIDTH, BARCODE_HEIGHT);
   }
 
-  // todo: text
+  const inputWithSpaces = addSpaces(barcodeInput).toUpperCase();
+
+  ctx.font = `${FONT_SIZE}px Arial`;
+  const { width: textWidth } = ctx.measureText(inputWithSpaces);
+  const textX = canvas.width / 2 - textWidth / 2;
+  const textY =
+    BARCODE_HEIGHT + PADDING_VERTICAL + FONT_VERTICAL_PADDING + FONT_SIZE / 2;
+  ctx.fillText(inputWithSpaces, textX, textY);
 
   const buffer = canvas.toBuffer("image/png");
   fs.writeFileSync(fileName, buffer);
 };
+
+const addSpaces = (str) => [...str].join(" ");
 
 module.exports = {
   drawBarcode,
