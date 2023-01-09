@@ -1,8 +1,8 @@
 const { createCanvas } = require("canvas");
 const fs = require("fs");
 
-const BAR_WIDTH = 1;
-const PADDING_HORIZONTAL = 20;
+const BAR_WIDTH = 2;
+const PADDING_HORIZONTAL = 30;
 const PADDING_VERTICAL = 20;
 const FONT_SIZE = 14;
 const FONT_VERTICAL_PADDING = 12;
