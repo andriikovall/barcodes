@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Product(models.Model):
-    code = models.CharField(max_length=12, primary_key=True)
+    code = models.CharField(max_length=36, primary_key=True)
     image_url = models.CharField(max_length=20000)
     name = models.CharField(max_length=300)
     quantity = models.IntegerField()

@@ -20,11 +20,9 @@ from products.views import ProductsViewSet, BarcodeViewSet, product_detail
 
 router = routers.DefaultRouter()
 router.register('products', ProductsViewSet)
-# router.register('products/<int:pk>', product_detail)
-# router.register('barcode', BarcodeViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/barcode/<int:pk>', product_detail)
+    path('api/barcode/<str:pk>', product_detail)
 ]
