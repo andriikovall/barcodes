@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from products.views import ProductsViewSet, BarcodeViewSet, product_detail
+from products.views import ProductsViewSet, BarcodeViewSet, get_barcode
 
 router = routers.DefaultRouter()
 router.register('products', ProductsViewSet)
@@ -24,5 +24,5 @@ router.register('products', ProductsViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/barcode/<str:pk>', product_detail)
+    path('api/barcode/<str:pk>', get_barcode)
 ]

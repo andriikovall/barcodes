@@ -48,20 +48,8 @@ class BarcodeViewSet(generics.ListAPIView):
 
 
 @csrf_exempt
-def product_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    print(pk)
+def get_barcode(request, pk):
     os.system(f'node ../../repo/rr/index.js {pk}')
     file = open('barcode.png', 'rb')
     response = HttpResponse(FileWrapper(file), content_type='image/png')
     return response
-    # try:
-    #     snippet = Product.objects.get(pk=pk)
-    # except Product.DoesNotExist:
-    #     return HttpResponse(status=404)
-    #
-    # if request.method == 'GET':
-    #     serializer = ProductSerializer(snippet)
-    #     return JsonResponse(serializer.data)
